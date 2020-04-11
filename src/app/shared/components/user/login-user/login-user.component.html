@@ -1,0 +1,28 @@
+<header>
+    <div>
+        <img src="../../../../assets/logo.svg">
+        <p>Сервисная служба <br>Московского Политеха</p>
+    </div>
+    <nav>
+        <i class="fas fa-home" [routerLink]="['/']"></i>
+    </nav>
+</header>
+
+<section>
+    <form [formGroup]="form" (ngSubmit)="submit">
+        <h2>Войти в личный кабинет</h2>
+        <input type="email" placeholder="Адрес электронной почты" name="email" formControlName="email" [ngClass]="{'is-invalid' : (form.get('email').invalid && form.get('email').touched), 'is-valid' : !form.get('email').invalid && form.get('email').touched}">
+        <div class="validation" >
+            <small class="text-danger" *ngIf="form.get('email').invalid && form.get('email').touched">Поле не может быть пустым</small>
+        </div>
+        <button type="submit" (click)="submit()" [disabled]="form.invalid">Войти в личный кабинет</button>
+    </form>
+</section>
+
+<footer>
+    <h6>Сервисная служба <br>Московского Политеха</h6>
+    <div>
+        <p [routerLink]="['/']">Венуться на главную страницу</p>
+    </div>
+</footer>
+

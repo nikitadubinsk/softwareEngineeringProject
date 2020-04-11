@@ -1,0 +1,240 @@
+header {
+    background: #1e1e1e;
+    color: white;
+    padding: 1% 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header div {
+    display: flex;
+    width: 80%;
+    align-items: center;
+}
+
+header img {
+    height: 8vh;
+    margin-right: 4%;
+}
+
+header nav {
+    width: 20%;
+    text-align: right;
+}
+
+header p {
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 0.9;
+}
+
+header .fas {
+    color: white;
+    font-size: 30px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+header .fas:hover {
+    color: #E63246;
+}
+
+header small {
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.block {
+    padding: 1% 10%;
+}
+
+h2 {
+    font-weight: 900;
+    font-size: 35px;
+}
+
+h3 {
+    margin-top: 10%;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+input, textarea, select, option {
+    padding: 10px;
+    width:  100%;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 18px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+
+select {
+    margin-top: 0;
+}
+
+form p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+textarea {
+    resize: none;
+    height: 20%;
+}
+
+button {
+    background: #1e1e1e;
+    padding: 1%;
+    color: white;
+    display: block;
+    border: 0px solid black;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 15px;
+}
+
+.is-invalid {
+    border: 1px solid #E63246;
+}
+
+.is-valid {
+    border: 1px solid #55B432;
+}
+
+.text-danger {
+    color: #E63246;
+    font-style: italic;
+    font-weight: 100;
+}
+
+button:hover {
+    background: #383838;
+}
+
+button:disabled {
+    background: #6b6b6b;
+}
+
+.noRequest {
+    font-weight: 100;
+    text-align: center;
+    font-size: 50px;
+}
+
+footer {
+    padding: 1% 10%;
+    background: #1e1e1e;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer h6 {
+    width: 50%;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+footer div {
+    text-align: right;
+}
+
+footer div p {
+    cursor: pointer;
+}
+
+footer div p:hover {
+    color: #E63246;
+}
+
+@media screen and (max-width: 800px) {
+    header {
+        padding: 2%;
+        display: block;
+        box-sizing: border-box;
+        width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    header p {
+        font-size: 22px;
+    }
+
+    header small {
+        font-size: 17px;
+    }
+
+    header div {
+        width: 100%;
+        margin-bottom: 2%;
+    }
+
+    header nav {
+        width: 60%;
+        text-align: center;
+        display: flex;
+        margin-left: 20%;
+        justify-content: center;
+    }
+
+    header .fas {
+        margin-left: 0;
+        display: block;
+    }
+
+    .block {
+        padding: 5% 1%;
+    }
+
+    form {
+        padding: 2%;
+    }
+    
+    h2, h3 {
+        font-weight: 900;
+        font-size: 23px;
+        text-align: center;
+    }
+
+    .noRequest {
+        font-size: 30px;
+    }
+
+    .allTable {
+        width: 100vw;
+        overflow: scroll;
+    }
+
+    footer {
+        padding: 1%;
+        display: block;
+    }
+    
+    footer h6 {
+        width: 100%;
+        font-weight: 900;
+        font-size: 20px;
+        margin-bottom: 5%;
+    }
+    
+    footer div {
+        text-align: left;
+    }
+    
+    footer div p {
+        cursor: pointer;
+    }
+    
+    footer div p:hover {
+        color: #E63246;
+    }
+}

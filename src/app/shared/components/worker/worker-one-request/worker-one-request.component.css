@@ -1,0 +1,81 @@
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+p {
+    text-align: center;
+    padding: 5px;
+}
+
+p:first-child {
+    width: 15%;
+    text-align: center;
+    font-weight: 900;
+}
+
+p:nth-child(2) {
+    width: 30%;
+    text-align: center;
+}
+
+p:nth-child(3) {
+    width: 15%;
+}
+
+p:nth-child(4) {
+    width: 10%;
+}
+
+p:nth-child(5) {
+    width: 10%;
+    font-weight: 900;
+}
+
+.danger {
+    color: #E63246;
+}
+
+.success {
+    color: #55B432;
+}
+
+.warning {
+    color: black;
+}
+
+button {
+    background: #1e1e1e;
+    padding: 5px;
+    color: white;
+    display: block;
+    border: 0px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+button:hover {
+    background: #383838;
+}
+
+form {
+    width: 10%;
+}
+
+select, option {
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 800px) {
+    div {
+        width: 250vw;
+        margin: 2%;
+    }
+}

@@ -1,0 +1,54 @@
+<header>
+    <div>
+        <img src="../../../../assets/logo.svg">
+        <p>Сервисная служба Московского Политеха<br><small>Вы вошли через электронную почту {{email}}</small></p>
+    </div>
+    <nav>
+        <i class="fas fa-sign-out-alt" [routerLink]="['/']" (click)="logout()"></i>
+    </nav>
+</header>
+
+<section class="block">
+    <h2>Список Ваших заявок</h2>
+    <div *ngIf="myRequest.length > 0" class="allTable">
+        <br>
+        <app-mini-one-request
+            *ngFor="let request of myRequest"
+            [request]="request"
+        ></app-mini-one-request>
+    </div>
+    <p *ngIf="myRequest.length == 0" class="noRequest">Вы пока не оставляли заявки</p>
+
+    <h3>Создать заявку на ремонт или обслуживание оборудования</h3>
+    <form [formGroup]="form" (ngSubmit)="submit">
+        <input type="hidden" name="status" formControlName="status">
+        <input placeholder="Название проблемы" type="text" name="name" formControlName="name" [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}">
+        <div class="validation" >
+            <small class="text-danger" *ngIf="form.get('name').invalid && form.get('name').touched">Поле не может быть пустым</small>
+        </div>
+        <textarea rows="3" placeholder="Кратко опишите суть проблемы" formControlName="text" [ngClass]="{'is-invalid' : (form.get('text').invalid && form.get('text').touched), 'is-valid' : !form.get('text').invalid && form.get('text').touched}"></textarea>
+        <div class="validation" >
+            <small class="text-danger" *ngIf="form.get('text').invalid && form.get('text').touched">Поле не может быть пустым</small>
+        </div>
+        <input type="hidden" name="email" formControlName="email">
+        <p>Специализация проблемы:</p>
+        <select formControlName="specialization" [ngClass]="{'is-invalid' : (form.get('specialization').invalid && form.get('specialization').touched), 'is-valid' : !form.get('specialization').invalid && form.get('specialization').touched}">
+            <option>Сантехника</option>
+            <option>Электрика</option>
+            <option>Обслуживание техники</option>
+            <option>Обслуживание ПО</option>
+            <option>Строительство</option>
+        </select>
+        <div class="validation" >
+            <small class="text-danger" *ngIf="form.get('specialization').invalid && form.get('specialization').touched">Поле не может быть пустым</small>
+        </div>
+        <button type="submit" (click)="submit()" [disabled]="form.invalid">Отправить заявку</button>
+    </form>
+</section>
+
+<footer>
+    <h6>Сервисная служба <br>Московского Политеха</h6>
+    <div>
+        <p [routerLink]="['/']" (click)="logout()">Венуться на главную страницу</p>
+    </div>
+</footer>

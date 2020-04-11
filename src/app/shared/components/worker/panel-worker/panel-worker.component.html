@@ -1,0 +1,43 @@
+<header>
+    <div>
+        <img src="../../../../assets/logo.svg">
+        <p>Сервисная служба Московского Политеха<br><small>Вы вошли как специалист {{email}}</small></p>
+    </div>
+    <nav>
+        <i class="fas fa-sign-out-alt" [routerLink]="['/']" (click)="logout()"></i>
+    </nav>
+</header>
+
+<section id="mainMenu">
+    <p [ngClass]="{'active' : myRequestFlag}" (click)="changeFlag(1)">Список моих задач</p>
+    <p [ngClass]="{'active' : !myRequestFlag}" (click)="changeFlag(2)">Список всех новых задач</p>
+</section>
+
+<section id="myRequest" *ngIf="myRequestFlag" class="block">
+    <h2>Список моих заявок</h2>
+    <div class="allTable">
+        <app-worker-one-request
+            *ngFor="let request of myRequest"
+            [request]="request"
+            (editRequest)="editRequest($event)"
+        ></app-worker-one-request>
+    </div>
+</section>
+
+<section id="allNewRequest" *ngIf="!myRequestFlag" class="block">
+    <h2>Список всех новых заявок по Вашей специалности</h2>
+    <div class="allTable">
+        <app-worker-one-request
+            *ngFor="let request of newRequest"
+            [request]="request"
+            (editRequest)="editRequest($event)"
+        ></app-worker-one-request>
+    </div>
+</section>
+
+<footer>
+    <h6>Сервисная служба <br>Московского Политеха</h6>
+    <div>
+        <p [routerLink]="['/']" (click)="logout()">Венуться на главную страницу</p>
+    </div>
+</footer>

@@ -1,0 +1,7 @@
+<div [ngClass]="{'danger' : (request.status == 'Новая'), 'warning' : (request.status == 'В работе'), 'success' : (request.status == 'Готово')}">
+    <p>{{request.name}}</p>
+    <p>{{request.text}}</p>
+    <p>{{request.specialization}}</p>
+    <p>{{request.status}}</p>
+    <p>{{request.dateOfFinish | date: 'dd.MM.yy'}}</p>
+</div>

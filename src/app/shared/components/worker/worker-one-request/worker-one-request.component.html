@@ -1,0 +1,22 @@
+<div *ngIf="!editFlag" [ngClass]="{'danger' : (request.status == 'Новая'), 'warning' : (request.status == 'В работе'), 'success' : (request.status == 'Готово')}">
+    <p>{{request.name}}</p>
+    <p>{{request.text}}</p>
+    <p>{{request.email}}</p>
+    <p *ngIf="request.dateOfFinish != ''">{{request.dateOfFinish | date: 'dd.MM.yy'}}</p>
+    <p>{{request.status}}</p>
+    <button (click)="edit(request)">Изменить</button>
+</div>
+
+<div *ngIf="editFlag" [ngClass]="{'danger' : (request.status == 'Новая'), 'warning' : (request.status == 'В работе'), 'success' : (request.status == 'Готово')}">
+    <p>{{request.name}}</p>
+    <p>{{request.text}}</p>
+    <p>{{request.email}}</p>
+    <p *ngIf="request.dateOfFinish != ''">{{request.dateOfFinish | date: 'dd.MM.yy'}}</p>
+    <form [formGroup]="form" (ngSubmit)="save">
+        <select formControlName="status">
+            <option>В работе</option>
+            <option>Готово</option>
+        </select>
+    </form>
+    <button (click)="save()">Сохранить</button>
+</div>

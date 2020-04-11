@@ -1,0 +1,39 @@
+div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+p {
+    width: 20%;
+    text-align: center;
+}
+
+div:hover {
+    background: #ebebeb;
+}
+
+button {
+    background: #1e1e1e;
+    padding: 5px;
+    color: white;
+    display: block;
+    border: 0px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+button:hover {
+    background: #383838;
+}
+
+@media screen and (max-width: 800px) {
+    div {
+        width: 250vw;
+    }
+}

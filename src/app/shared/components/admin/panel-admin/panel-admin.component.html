@@ -1,0 +1,75 @@
+<header>
+    <div>
+        <img src="../../../../assets/logo.svg">
+        <p>Сервисная служба Московского Политеха<br><small>Вы вошли как администратор</small></p>
+    </div>
+    <nav>
+        <i class="fas fa-sign-out-alt" [routerLink]="['/']" (click)="logout()"></i>
+    </nav>
+</header>
+
+<section id="mainMenu">
+    <p [ngClass]="{'active' : allWorkersFlag}" (click)="changeFlag(1)">Список всех специалистов</p>
+    <p [ngClass]="{'active' : !allWorkersFlag}" (click)="changeFlag(2)">Список всех задач</p>
+</section>
+
+<section id="allWorkers" *ngIf="allWorkersFlag">
+    <div class="allWorkers">
+        <app-one-worker
+            *ngFor="let worker of workers"
+            [work]="worker"
+            (editWorker)="editWorker($event)"
+            (deleteWorker)="deleteWorker($event)"
+        ></app-one-worker>
+    </div>
+    <div class="newWorker" *ngIf="!editWorkerFlag">
+        <form [formGroup]="form" (ngSubmit)="submit">
+            <h4>Добавить нового сотрудника</h4>
+            <input type="text" placeholder="ФИО сотрудника" formControlName="name" [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}">
+            <input type="email" placeholder="Электронная почта сотрудника" formControlName="email" [ngClass]="{'is-invalid' : (form.get('email').invalid && form.get('email').touched), 'is-valid' : !form.get('email').invalid && form.get('email').touched}">
+            <select formControlName="specialization" formControlName="specialization" [ngClass]="{'is-invalid' : (form.get('specialization').invalid && form.get('specialization').touched), 'is-valid' : !form.get('specialization').invalid && form.get('specialization').touched}">
+                <option>Сантехника</option>
+                <option>Электрика</option>
+                <option>Обслуживание техники</option>
+                <option>Обслуживание ПО</option>
+                <option>Строительство</option>
+            </select>
+            <button type="submit" (click)="submit()" [disabled]="form.invalid">Сохранить нового работника</button>
+        </form>
+    </div>
+    <div class="editWorker" *ngIf="editWorkerFlag">
+        <form [formGroup]="form" (ngSubmit)="saveWorker">
+            <h4>Редактировать сотрудника</h4>
+            <input type="hidden" formControlName="id">
+            <input type="text" placeholder="ФИО сотрудника" formControlName="name" [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}">
+            <input type="email" placeholder="Электронная почта сотрудника" formControlName="email" [ngClass]="{'is-invalid' : (form.get('email').invalid && form.get('email').touched), 'is-valid' : !form.get('email').invalid && form.get('email').touched}">
+            <select formControlName="specialization" formControlName="specialization" [ngClass]="{'is-invalid' : (form.get('specialization').invalid && form.get('specialization').touched), 'is-valid' : !form.get('specialization').invalid && form.get('specialization').touched}">
+                <option>Сантехника</option>
+                <option>Электрика</option>
+                <option>Обслуживание техники</option>
+                <option>Обслуживание ПО</option>
+                <option>Строительство</option>
+            </select>
+            <button type="submit" (click)="saveWorker()" [disabled]="form.invalid">Сохранить изменения</button>
+        </form>
+    </div>
+</section>
+
+<section id="allRequest" *ngIf="!allWorkersFlag">
+    <h2>Список всех заявок</h2>
+    <div *ngIf="requests.length > 0" class="allRequest">
+        <br>
+        <app-admin-one-request
+        *ngFor="let request of requests"
+        [request]="request"
+    ></app-admin-one-request>
+    </div>
+    <p *ngIf="requests.length == 0" class="noRequest">Заявок нет</p>
+</section>
+
+<footer>
+    <h6>Сервисная служба <br>Московского Политеха</h6>
+    <div>
+        <p [routerLink]="['/']" (click)="logout()">Венуться на главную страницу</p>
+    </div>
+</footer>
