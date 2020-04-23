@@ -40,7 +40,6 @@ export class PanelAdminComponent implements OnInit {
       this.workers[this.i].id=this.key[this.i];
       console.log(this.workers[this.i].id)
     }
-
     try {
       this.requests = await this.requestServices.getAllRequest();
       this.requests = Object.values(this.requests)
@@ -49,13 +48,13 @@ export class PanelAdminComponent implements OnInit {
     }
   }
 
-  async submit() {
+  async submit() { /** добавляем нового сотрудника */
     await this.workerServices.addWorker(this.form.value);
     this.workers.push(this.form.value);
     this.form.reset();
   }
 
-  async logout() {
+  async logout() { /** производим логаут из административной панели */
     try {
       await firebase.auth().signOut()
     } catch(e) {
@@ -67,7 +66,7 @@ export class PanelAdminComponent implements OnInit {
     }
   }
 
-  editWorker(worker) {
+  editWorker(worker) { /** редактирование специалиста */
     this.editWorkerFlag = true;
     this.form = new FormGroup({
      name: new FormControl(worker.name, [Validators.required, Validators.minLength(1)]),
@@ -77,32 +76,32 @@ export class PanelAdminComponent implements OnInit {
     });
   }
 
-  async saveWorker() {
-    this.editWorkerFlag = false;
+  async saveWorker() { /** сохраняем отредактированного специалиста */
+    this.editWorkerFlag = false; /** переключение на интерфейс редактирования */
     try {
-      await this.workerServices.editWorker(this.form.value);
+      await this.workerServices.editWorker(this.form.value); /** сохраняем измененного специалиста в БД */
       let index = this.workers.findIndex((el)=>el.id==this.form.value.id); 
-      this.workers[index] = this.form.value;
+      this.workers[index] = this.form.value; /** сохраняем специалиста в массиве всех специалистов */
     } catch(e) {
       console.log(e.message)
     }
-    this.form.reset();
+    this.form.reset();   /** очищение формы */
   }
 
-  async deleteWorker(worker) {
+  async deleteWorker(worker) { /** удаляем специалиста */
     try {
-      await this.workerServices.deleteWorker(worker);
+      await this.workerServices.deleteWorker(worker); /** удаление специалиста из БД */
       let index = this.workers.findIndex((el)=>el.id==worker.id); 
-      this.workers.splice(index, 1);
+      this.workers.splice(index, 1);  /** удаление специалиста из массива со всеми специалистами */
     } catch(e) {
-      console.log(e.message);
+      console.log(e.message); /** вывод сообщения об ошибке */
     }
   }
 
-  changeFlag(number) {
+  changeFlag(number) { /** меняем блоки, которые видны сейчас */
     switch (number) {
-      case 1: this.allWorkersFlag = true; break;
-      case 2: this.allWorkersFlag = false; break;
+      case 1: this.allWorkersFlag = true; break; /** список всех специалистов */
+      case 2: this.allWorkersFlag = false; break;     /** список всех заявок */
     }
   }
 

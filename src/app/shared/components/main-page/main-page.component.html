@@ -11,23 +11,23 @@
 </header>
 
 <section class="block" id="newRequest">
-    <form [formGroup]="form" (ngSubmit)="submit" *ngIf="!requestCreated">
+    <form [formGroup]='mainForm' (ngSubmit)="submit()" *ngIf="!requestCreated">
         <h2>Создать заявку на ремонт или обслуживание оборудования</h2>
         <input type="hidden" name="status" formControlName="status">
-        <input placeholder="Название проблемы" type="text" name="name" formControlName="name" [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}">
+        <input placeholder="Название проблемы" type="text" name="name" formControlName="name" [ngClass]="{'is-invalid' : (mainForm.get('name').invalid && mainForm.get('name').touched), 'is-valid' : !mainForm.get('name').invalid && mainForm.get('name').touched}">
         <div class="validation" >
-            <small class="text-danger" *ngIf="form.get('name').invalid && form.get('name').touched">Поле не может быть пустым</small>
+            <small class="text-danger" *ngIf="mainForm.get('name').invalid && mainForm.get('name').touched">Поле не может быть пустым</small>
         </div>
-        <textarea rows="3" placeholder="Кратко опишите суть проблемы" formControlName="text" [ngClass]="{'is-invalid' : (form.get('text').invalid && form.get('text').touched), 'is-valid' : !form.get('text').invalid && form.get('text').touched}"></textarea>
+        <textarea rows="3" placeholder="Кратко опишите суть проблемы" formControlName="text" [ngClass]="{'is-invalid' : (mainForm.get('text').invalid && mainForm.get('text').touched), 'is-valid' : !mainForm.get('text').invalid && mainForm.get('text').touched}"></textarea>
         <div class="validation" >
-            <small class="text-danger" *ngIf="form.get('text').invalid && form.get('text').touched">Поле не может быть пустым</small>
+            <small class="text-danger" *ngIf="mainForm.get('text').invalid && mainForm.get('text').touched">Поле не может быть пустым</small>
         </div>
-        <input type="email" placeholder="Ваш адрес электронной почты" name="email" formControlName="email" [ngClass]="{'is-invalid' : (form.get('email').invalid && form.get('email').touched), 'is-valid' : !form.get('email').invalid && form.get('email').touched}">
+        <input type="email" placeholder="Ваш адрес электронной почты" name="email" formControlName="email" [ngClass]="{'is-invalid' : (mainForm.get('email').invalid && mainForm.get('email').touched), 'is-valid' : !mainForm.get('email').invalid && mainForm.get('email').touched}">
         <div class="validation" >
-            <small class="text-danger" *ngIf="form.get('email').invalid && form.get('email').touched">Поле не может быть пустым</small>
+            <small class="text-danger" *ngIf="mainForm.get('email').invalid && mainForm.get('email').touched">Поле не может быть пустым</small>
         </div>
         <p>Специализация проблемы:</p>
-        <select formControlName="specialization" [ngClass]="{'is-invalid' : (form.get('specialization').invalid && form.get('specialization').touched), 'is-valid' : !form.get('specialization').invalid && form.get('specialization').touched}">
+        <select formControlName="specialization" [ngClass]="{'is-invalid' : (mainForm.get('specialization').invalid && mainForm.get('specialization').touched), 'is-valid' : !mainForm.get('specialization').invalid && mainForm.get('specialization').touched}">
             <option>Сантехника</option>
             <option>Электрика</option>
             <option>Обслуживание техники</option>
@@ -35,9 +35,9 @@
             <option>Строительство</option>
         </select>
         <div class="validation" >
-            <small class="text-danger" *ngIf="form.get('specialization').invalid && form.get('specialization').touched">Поле не может быть пустым</small>
+            <small class="text-danger" *ngIf="mainForm.get('specialization').invalid && mainForm.get('specialization').touched">Поле не может быть пустым</small>
         </div>
-        <button type="submit" (click)="submit()" [disabled]="form.invalid">Отправить заявку</button>
+        <button type="submit" (click)="submit()" [disabled]="mainForm.invalid">Отправить заявку</button>
     </form>
     <h3 *ngIf="requestCreated">Спасибо большое. <br>Ваша заявка уже обрабатывается<p (click)="newForm()">Создать еще одну заявку</p>
     </h3>

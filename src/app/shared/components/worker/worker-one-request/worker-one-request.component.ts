@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Reauest, Worker } from '../../../../app.component';
+import { Reauest } from '../../../../app.component';
 
 @Component({
   selector: 'app-worker-one-request',
@@ -20,26 +20,26 @@ export class WorkerOneRequestComponent implements OnInit {
   ngOnInit() {
   }
 
-  edit(request: Reauest) {
+  edit(request: Reauest) { /** редактирование статуса заявки */
     this.editFlag = true;
-    this.form = new FormGroup({
+    this.form = new FormGroup({    /** создание формы для редактирования */
       status: new FormControl(request.status, [Validators.required, Validators.minLength(1)])
     });
     this.newRequest = request;
   }
 
-  save() {
-    this.editFlag = false;
-    if (this.form.value.status == 'В работе') {
+  save() { /** сохранение отредактированной заявки */
+    this.editFlag = false;   /** интерфейс редактирования */
+    if (this.form.value.status == 'В работе') {   /** если статус меняется на "в работе" */
       this.newRequest.status = this.form.value.status;
-      this.newRequest.emailWorker = localStorage['email'];
+      this.newRequest.emailWorker = localStorage['email'];  
       delete this.newRequest.dateOfFinish
-    }
-    if (this.form.value.status == 'Готово') {
+    }  
+    if (this.form.value.status == 'Готово') {     /** если статус меняем на "готово" */
       this.newRequest.status = this.form.value.status;
       this.newRequest.dateOfFinish = new Date();
     }
-    this.editRequest.emit(this.newRequest);
+    this.editRequest.emit(this.newRequest);   /** передача дейставия */
   }
 
 }

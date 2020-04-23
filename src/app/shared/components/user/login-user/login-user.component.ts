@@ -14,15 +14,15 @@ export class LoginUserComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit() {   /** создание формы авторизации */
     this.form = new FormGroup({
       email: new FormControl(this.email, [Validators.required, Validators.minLength(1), Validators.email])
     });
   }
 
-  async submit() {
-      localStorage.setItem('email', this.form.value.email)
-      this.router.navigate(['/user'])
+  async submit() { /** авторизация пользователя по email */
+      localStorage.setItem('email', this.form.value.email)  /** добавление в localStorage email */
+      this.router.navigate(['/user'])     /** адресация в личный кабинет */
   }
 
 }

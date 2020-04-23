@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, FormsModule, Validators, FormBuilder } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LoginWorkerComponent } from './login-worker.component';
 
@@ -8,7 +11,8 @@ describe('LoginWorkerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginWorkerComponent ]
+      declarations: [ LoginWorkerComponent ],
+      imports: [ FormsModule, ReactiveFormsModule, HttpClientModule, BrowserModule ],
     })
     .compileComponents();
   }));
@@ -19,7 +23,14 @@ describe('LoginWorkerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create form with password', () => {
+    expect(component.form.contains('password')).toBe(true);
+  });
+
+  it ('should be min length of password', () => {
+    const control = component.form.get('password');
+    control.setValue('1234');
+    expect(control.valid).toBeFalsy();
   });
 });
+

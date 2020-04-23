@@ -8,7 +8,7 @@ import { Reauest, Worker } from '../../../../app.component';
 })
 export class AdminOneRequestComponent implements OnInit {
 
-  @Input() request : Reauest;
+  @Input() request : Reauest; /** принимаем одну заявку */
 
   constructor() { }
 

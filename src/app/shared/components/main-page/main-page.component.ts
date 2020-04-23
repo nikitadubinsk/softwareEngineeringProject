@@ -9,9 +9,9 @@ import { RequestService } from '../../services/request.service';
 })
 export class MainPageComponent implements OnInit {
 
-  form : FormGroup;
+  public mainForm : FormGroup;
   name;
-  text;
+  text = '';
   email;
   status;
   specialization;
@@ -20,24 +20,24 @@ export class MainPageComponent implements OnInit {
   constructor(private requestServices: RequestService) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.mainForm = new FormGroup({   /** активирование формы с новоя заявки */
       status: new FormControl('Новая', []),
-      name: new FormControl(this.name, [Validators.required, Validators.minLength(1)]),
+      name: new FormControl(' ', [Validators.required, Validators.minLength(1)]),
       text: new FormControl(this.text, [Validators.required, Validators.minLength(1)]),
-      email: new FormControl(this.email, [Validators.required, Validators.minLength(1), Validators.email]),
-      specialization: new FormControl(this.specialization, [Validators.required, Validators.minLength(1)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(1), Validators.email]),
+      specialization: new FormControl('', [Validators.required, Validators.minLength(1)]),
     });
   }
 
-  async submit() {
-    this.requestCreated = true;
-    await this.requestServices.addRequest(this.form.value);
-    this.form.reset();
+  async submit() { /** добавляем новую заявку в БД */
+    this.requestCreated = true;    /** показ сообщения о сохранении заявки */
+    await this.requestServices.addRequest(this.mainForm.value); /** добавление новой заявки в БД */
+    this.mainForm.reset();   /** очищение формы */
   }
 
-  newForm() {
-    this.requestCreated = !this.requestCreated;
-    this.form = new FormGroup({
+  newForm() { /** делаем новую пустую форму для новой заявки */
+    this.requestCreated = !this.requestCreated;    /** интерфейс создания новой заявки */
+    this.mainForm = new FormGroup({
       status: new FormControl('Новая', []),
       name: new FormControl(this.name, [Validators.required, Validators.minLength(1)]),
       text: new FormControl(this.text, [Validators.required, Validators.minLength(1)]),

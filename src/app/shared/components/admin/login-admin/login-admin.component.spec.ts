@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, FormsModule, Validators, FormBuilder } from '@angular/forms';
 
 import { LoginAdminComponent } from './login-admin.component';
 
@@ -8,7 +9,8 @@ describe('LoginAdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginAdminComponent ]
+      declarations: [ LoginAdminComponent ],
+      imports: [ FormsModule, ReactiveFormsModule ],
     })
     .compileComponents();
   }));
@@ -19,7 +21,13 @@ describe('LoginAdminComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create form with email', () => {
+    expect(component.form.contains('email')).toBe(true);
+  });
+
+  it ('should be valid email', () => {
+    const control = component.form.get('email');
+    control.setValue('example@');
+    expect(control.valid).toBeFalsy();
   });
 });

@@ -8,7 +8,7 @@ import { Reauest, Worker } from '../../../../app.component';
 })
 export class MiniOneRequestComponent implements OnInit {
 
-  @Input() request : Reauest;
+  @Input() request : Reauest; /** принимаем одну заявку для отображения */
 
   constructor() { }
 

@@ -24,8 +24,8 @@ export class PanelUserComponent implements OnInit {
   constructor(private requestServices: RequestService) { }
 
   async ngOnInit() {
-    this.email = localStorage['email'];
-    this.form = new FormGroup({
+    this.email = localStorage['email'];     /** получаем email */
+    this.form = new FormGroup({     /** создание формы для новой заявки */
       status: new FormControl('Новая', []),
       name: new FormControl(this.name, [Validators.required, Validators.minLength(1)]),
       text: new FormControl(this.text, [Validators.required, Validators.minLength(1)]),
@@ -33,11 +33,11 @@ export class PanelUserComponent implements OnInit {
       specialization: new FormControl(this.specialization, [Validators.required, Validators.minLength(1)]),
     });
     try {
-      this.allRequest = await this.requestServices.getAllRequest();
-      this.allRequest = Object.values(this.allRequest);
+      this.allRequest = await this.requestServices.getAllRequest();    /** получаем список всех заявок */
+      this.allRequest = Object.values(this.allRequest);    /** обработка полученных данных */
       for (this.i=0; this.i<this.allRequest.length; this.i++) {
         if (this.allRequest[this.i].email == this.email) {
-          this.myRequest.push(this.allRequest[this.i]);
+          this.myRequest.push(this.allRequest[this.i]);    /** добавление в массив всех заявок */
         }
       }
     } catch(e) {
@@ -45,17 +45,17 @@ export class PanelUserComponent implements OnInit {
     }
   }
 
-  async submit() {
+  async submit() { /** добавление новой заявки авторизованным пользователем */
     try {
-      await this.requestServices.addRequest(this.form.value);
-      this.myRequest.push(this.form.value);
-      this.form.reset();
+      await this.requestServices.addRequest(this.form.value);   /** добавлоение заявки в БД */
+      this.myRequest.push(this.form.value);   /**добавление заявки в массив со всеми заявками  */
+      this.form.reset();    /** очищение формы */
     } catch(e) {
-      console.log(e);
+      console.log(e);   /** вывод ошибки */
     }
   }
 
-  logout() {
+  logout() { /** логаут из личного кабинета пользователя */
     localStorage.clear;
   }
 

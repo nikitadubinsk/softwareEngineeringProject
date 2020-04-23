@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Reauest, Worker } from '../../../../app.component';
+import { Worker } from '../../../../app.component';
 
 @Component({
   selector: 'app-one-worker',
@@ -17,11 +17,11 @@ export class OneWorkerComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete(worker: Worker) {
+  delete(worker: Worker) {  /** удаление одного выбранного сотрудника */
     this.deleteWorker.emit(worker);
   }
 
-  edit(worker: Worker) {
+  edit(worker: Worker) { /** редактирование одного выбранного сотрудника */
     this.editWorker.emit(worker);
   }
 

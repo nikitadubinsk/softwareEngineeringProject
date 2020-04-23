@@ -19,7 +19,4 @@ describe('MiniOneRequestComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
