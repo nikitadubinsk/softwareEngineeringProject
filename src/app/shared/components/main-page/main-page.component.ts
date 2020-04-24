@@ -11,7 +11,7 @@ export class MainPageComponent implements OnInit {
 
   public mainForm : FormGroup;
   name;
-  text = '';
+  text;
   email;
   status;
   specialization;
@@ -22,9 +22,9 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.mainForm = new FormGroup({   /** активирование формы с новоя заявки */
       status: new FormControl('Новая', []),
-      name: new FormControl(' ', [Validators.required, Validators.minLength(1)]),
+      name: new FormControl(this.name, [Validators.required, Validators.minLength(1)]),
       text: new FormControl(this.text, [Validators.required, Validators.minLength(1)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(1), Validators.email]),
+      email: new FormControl(this.email, [Validators.required, Validators.minLength(1), Validators.email]),
       specialization: new FormControl('', [Validators.required, Validators.minLength(1)]),
     });
   }

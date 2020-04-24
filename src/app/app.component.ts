@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
-export interface Reauest {
+export interface Reauest {   /** интерфейс для заявки */
   name: string,
   text: string,
   email: string,
@@ -13,11 +13,12 @@ export interface Reauest {
   id?: string
 }
 
-export interface Worker {
+export interface Worker {   /** интерфейс для специалиста */
   id?: string,
   name: string,
   email: string,
-  specialization: string
+  specialization: string,
+  password?: string
 } 
 
 @Component({
@@ -37,7 +38,7 @@ export class AppComponent {
     measurementId: "G-GL51HLN53C"
   };
 
-  ngOnInit() {
-    firebase.initializeApp(this.firebaseConfig); 
+  ngOnInit() {   
+    firebase.initializeApp(this.firebaseConfig);    /** инициалируем firebase */
   }
 }

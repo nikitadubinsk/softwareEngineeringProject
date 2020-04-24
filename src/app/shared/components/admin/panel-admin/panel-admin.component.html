@@ -27,6 +27,7 @@
             <h4>Добавить нового сотрудника</h4>
             <input type="text" placeholder="ФИО сотрудника" formControlName="name" [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}">
             <input type="email" placeholder="Электронная почта сотрудника" formControlName="email" [ngClass]="{'is-invalid' : (form.get('email').invalid && form.get('email').touched), 'is-valid' : !form.get('email').invalid && form.get('email').touched}">
+            <input type="text" placeholder="Пароль" formControlName="password" [ngClass]="{'is-invalid' : (form.get('password').invalid && form.get('password').touched), 'is-valid' : !form.get('password').invalid && form.get('password').touched}">
             <select formControlName="specialization" formControlName="specialization" [ngClass]="{'is-invalid' : (form.get('specialization').invalid && form.get('specialization').touched), 'is-valid' : !form.get('specialization').invalid && form.get('specialization').touched}">
                 <option>Сантехника</option>
                 <option>Электрика</option>
@@ -43,6 +44,7 @@
             <input type="hidden" formControlName="id">
             <input type="text" placeholder="ФИО сотрудника" formControlName="name" [ngClass]="{'is-invalid' : (form.get('name').invalid && form.get('name').touched), 'is-valid' : !form.get('name').invalid && form.get('name').touched}">
             <input type="email" placeholder="Электронная почта сотрудника" formControlName="email" [ngClass]="{'is-invalid' : (form.get('email').invalid && form.get('email').touched), 'is-valid' : !form.get('email').invalid && form.get('email').touched}">
+            <input type="text" placeholder="Пароль" formControlName="password" [ngClass]="{'is-invalid' : (form.get('password').invalid && form.get('password').touched), 'is-valid' : !form.get('password').invalid && form.get('password').touched}">
             <select formControlName="specialization" formControlName="specialization" [ngClass]="{'is-invalid' : (form.get('specialization').invalid && form.get('specialization').touched), 'is-valid' : !form.get('specialization').invalid && form.get('specialization').touched}">
                 <option>Сантехника</option>
                 <option>Электрика</option>
