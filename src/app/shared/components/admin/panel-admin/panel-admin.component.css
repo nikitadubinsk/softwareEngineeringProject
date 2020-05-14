@@ -87,6 +87,26 @@ h4 {
     font-size: 25px;
 }
 
+.allConditions {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 1% 25%;
+}
+
+.allConditions p {
+    cursor: pointer;
+    user-select: none;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+.normal {
+    font-weight: normal;
+}
+
 input, option, select {
     width: 93%;
     font-size: 20px;
@@ -102,6 +122,14 @@ input, option, select {
 input {
     display: inline;
     width: 45%;
+}
+
+#search {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1%;
+    text-align: center;
+    font-size: 18px;
 }
 
 button {
@@ -185,6 +213,42 @@ footer div p {
 
 footer div p:hover {
     color: #E63246;
+}
+
+@media print { 
+	@page :first { 
+		margin: 1cm; 
+	}
+
+	header, footer, #mainMenu, .allConditions, #search {
+		display: none;
+	}
+
+	p { 
+		widows: 5; 
+		orphans: 8;
+    }
+    
+    h2 {
+        font-weight: 900;
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    #allWorkers, #allRequest {
+        padding: 1%;
+        min-height: 100vh;
+        width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box;
+    }
+
+    .allWorkers, .allRequest {
+        width: 100vw;
+        overflow: scroll;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -296,5 +360,15 @@ footer div p:hover {
     
     footer div p:hover {
         color: #E63246;
+    }
+
+    .allConditions {
+        width: 100%;
+        margin: 1% 0;
+    }
+
+    .allConditions p {
+        text-align: center;
+        user-select: none;
     }
 }

@@ -37,12 +37,12 @@ export class MainPageComponent implements OnInit {
 
   newForm() { /** делаем новую пустую форму для новой заявки */
     this.requestCreated = !this.requestCreated;    /** интерфейс создания новой заявки */
-    this.mainForm = new FormGroup({
+    this.mainForm = new FormGroup({   /** активирование формы с новоя заявки */
       status: new FormControl('Новая', []),
       name: new FormControl(this.name, [Validators.required, Validators.minLength(1)]),
       text: new FormControl(this.text, [Validators.required, Validators.minLength(1)]),
       email: new FormControl(this.email, [Validators.required, Validators.minLength(1), Validators.email]),
-      specialization: new FormControl(this.specialization, [Validators.required, Validators.minLength(1)]),
+      specialization: new FormControl('', [Validators.required, Validators.minLength(1)]),
     });
   }
 

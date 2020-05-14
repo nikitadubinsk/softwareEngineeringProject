@@ -4,7 +4,6 @@ import { RequestService } from '../../../services/request.service';
 import { WorkerService } from '../../../services/worker.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import { Reauest, Worker } from '../../../../app.component';
 import "firebase/auth";
 
 @Component({
@@ -25,7 +24,16 @@ export class PanelAdminComponent implements OnInit {
   key;
   editWorkerFlag = false;
   allWorkersFlag = true;
-  requests = []
+  requests = [];
+  search = "";
+  fullRequest = [];
+  allFlags = [];
+  graph =  [];
+  allCount = [0, 0, 0];
+  view: any[] = [700, 400];
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
 
   constructor(private requestServices: RequestService, private router: Router, private workerServices: WorkerService) { }
 
@@ -44,9 +52,25 @@ export class PanelAdminComponent implements OnInit {
     }
     try {
       this.requests = await this.requestServices.getAllRequest();   /** получаем список всех заявок */
-      this.requests = Object.values(this.requests)   /** добавляем все заявки в массив */
+      this.requests = Object.values(this.requests) /** добавляем все заявки в массив */
+      for (let i=0; i<this.requests.length; i++) {
+        switch(this.requests[i].status) {
+          case 'Новая': this.allCount[0]++;
+          case 'В работе': this.allCount[1]++;
+          case 'Готово': this.allCount[2]++;
+        }
+      } 
+      this.graph = [
+        {"name": 'Новых заявок', "value": this.allCount[0]},
+        {"name": 'Заявок в работе', "value": this.allCount[1]},
+        {"name": 'Готовых заявок', "value": this.allCount[2]}
+      ]  
     } catch(e) {
       console.log(e)
+    }
+    this.fullRequest = [...this.requests];
+    for (let i=0; i<3; i++) {
+      this.allFlags[i] = false;
     }
   }
 
@@ -107,6 +131,57 @@ export class PanelAdminComponent implements OnInit {
       case 1: this.allWorkersFlag = true; break; /** список всех специалистов */
       case 2: this.allWorkersFlag = false; break;     /** список всех заявок */
     }
+  }
+
+  showRequest(number) {   /** показать только определенные заявки */
+    if (number == 0) {
+      if (this.allFlags[0]) {
+        this.requests = [...this.fullRequest];
+        this.allFlags[0] = false;
+      } else {
+        this.requests = [...this.fullRequest];
+        this.allFlags[0] = true;
+        this.allFlags[1] = false;
+        this.allFlags[2] = false;
+        for (let i=0; i<this.requests.length; i++) {
+          if (this.requests[i].status != 'Новая') {
+            this.requests.splice(i, 1);
+          }
+        };
+      }; 
+    } else 
+    if (number == 1) {
+      if (this.allFlags[1]) {
+        this.requests = [...this.fullRequest];
+        this.allFlags[1] = false;
+      } else {
+        this.requests = [];
+        this.allFlags[0] = false;
+        this.allFlags[1] = true;
+        this.allFlags[2] = false;
+        for (let i=0; i<this.fullRequest.length; i++) {
+          if (this.fullRequest[i].status == "В работе") {
+            this.requests.push(this.fullRequest[i]);
+          }
+        };
+      }; 
+    } else 
+    if (number == 2) {
+      if (this.allFlags[2]) {
+        this.requests = [...this.fullRequest];
+        this.allFlags[2] = false;
+      } else {
+        this.requests = [];
+        this.allFlags[0] = false;
+        this.allFlags[1] = false;
+        this.allFlags[2] = true;
+        for (let i=0; i<this.fullRequest.length; i++) {
+          if (this.fullRequest[i].status == 'Готово') {
+            this.requests.push(this.fullRequest[i]);
+          }
+        };
+      }; 
+    }   
   }
 
 }

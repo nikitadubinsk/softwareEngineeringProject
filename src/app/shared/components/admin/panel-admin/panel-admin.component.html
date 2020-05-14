@@ -1,6 +1,6 @@
 <header>
     <div>
-        <img src="../../../../assets/logo.svg">
+        <img src="../../../../assets/logo.png">
         <p>Сервисная служба Московского Политеха<br><small>Вы вошли как администратор</small></p>
     </div>
     <nav>
@@ -15,8 +15,9 @@
 
 <section id="allWorkers" *ngIf="allWorkersFlag">
     <div class="allWorkers">
+        <input type="text" id="search" placeholder="Поиск" [(ngModel)]="search">
         <app-one-worker
-            *ngFor="let worker of workers"
+            *ngFor="let worker of workers | worker: search;"
             [work]="worker"
             (editWorker)="editWorker($event)"
             (deleteWorker)="deleteWorker($event)"
@@ -59,14 +60,27 @@
 
 <section id="allRequest" *ngIf="!allWorkersFlag">
     <h2>Список всех заявок</h2>
+    <input type="text" id="search" placeholder="Поиск" [(ngModel)]="search">
+    <div class="allConditions">
+        <p (click)="showRequest(0)" [ngClass]="{'bold' : allFlags[0], 'normal': !allFlags[0]}">Только новые</p>
+        <p (click)="showRequest(1)" [ngClass]="{'bold' : allFlags[1], 'normal': !allFlags[1]}">Только в работе</p>
+        <p (click)="showRequest(2)" [ngClass]="{'bold' : allFlags[2], 'normal': !allFlags[2]}">Только завершенные</p>
+    </div>
     <div *ngIf="requests.length > 0" class="allRequest">
         <br>
         <app-admin-one-request
-        *ngFor="let request of requests"
+        *ngFor="let request of requests | requestAdmin: search;"
         [request]="request"
     ></app-admin-one-request>
     </div>
     <p *ngIf="requests.length == 0" class="noRequest">Заявок нет</p>
+    <!-- <br><br><br>
+    <h2>Статистика по заявкам</h2> -->
+    <!-- <ngx-charts-advanced-pie-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="graph">
+    </ngx-charts-advanced-pie-chart> -->
 </section>
 
 <footer>

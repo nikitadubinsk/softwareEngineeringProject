@@ -8,6 +8,7 @@ div {
 p {
     text-align: center;
     padding: 5px;
+    word-wrap: break-word;
 }
 
 p:first-child {
@@ -54,8 +55,26 @@ p:nth-child(7) {
     color: black;
 }
 
+@media screen and (max-width: 1050px) {
+    div {
+        width: 130vw;
+    }
+}
+
 @media screen and (max-width: 800px) {
     div {
         width: 300vw;
+    }
+}
+
+@media print {
+    @page {
+        size: landscape;
+    }
+
+    p {
+        font-size: 10px;
+        word-wrap: break-word;
+        color: black;
     }
 }

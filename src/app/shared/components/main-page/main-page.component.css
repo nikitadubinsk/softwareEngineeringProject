@@ -45,7 +45,7 @@ header .fas:hover {
 
 #newRequest {
     background: url(../../../../assets/back.jpg) no-repeat center top / cover;
-    min-height: 80vh;
+    min-height: 85vh;
 }
 
 .block {
@@ -180,6 +180,36 @@ footer div p {
 
 footer div p:hover {
     color: #E63246;
+}
+
+@media screen and (max-width: 1050px) {
+    header {
+        padding: 1% 5%;
+    }
+
+    header img {
+        height: 6vh;
+    }
+
+    form {
+        margin-top: 20%;
+        padding: 2%;
+        border: 10px solid transparent;
+        width: 70%;
+        border-image: linear-gradient(to left, transparent 0%, #1e1e1e 100%);
+        border-image-slice: 2;
+        color: white;
+        margin-left: 30%;
+        margin-bottom: 3%;
+    }
+
+    #newRequest {
+        min-height: 90vh;
+    }
+
+    footer {
+        padding: 1% 5%;
+    }
 }
 
 @media screen and (max-width: 800px) {

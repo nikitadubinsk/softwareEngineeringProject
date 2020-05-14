@@ -16,6 +16,8 @@ import { LoginUserComponent } from './shared/components/user/login-user/login-us
 import { PanelUserComponent } from './shared/components/user/panel-user/panel-user.component';
 import { MiniOneRequestComponent } from './shared/components/user/mini-one-request/mini-one-request.component';
 import { OneWorkerComponent } from './shared/components/admin/one-worker/one-worker.component';
+import { RequestAdminPipe } from './shared/pipes/request-admin.pipe';
+import { WorkerPipe } from './shared/pipes/worker.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { OneWorkerComponent } from './shared/components/admin/one-worker/one-wor
     LoginUserComponent,
     PanelUserComponent,
     MiniOneRequestComponent,
-    OneWorkerComponent
+    OneWorkerComponent,
+    RequestAdminPipe,
+    WorkerPipe
   ],
   imports: [
     BrowserModule,
